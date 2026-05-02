@@ -17,7 +17,7 @@ CPU: Intel(R) Core(TM) i7-10870H CPU @ 2.20GHz 2.21 GHz RAM: 16 GB GPU: RTX 3060
 
 ## **Enviroments Settings**
 
-Python and tensorflow are used to run this codce and train the networks. 
+Python and tensorflow are used to run this code and train the networks. 
 
 Caution: 
 Tensorflow's setting up with the nvidia drivers to use the GPU and speed up the training process is very delicate. 
@@ -57,6 +57,8 @@ The results obtained from the analysis of this dataset under consideration are i
 - dataset: folder containing the datasets and their preprocessed copy
 - code: folder containing all the programs used in the project that are written in Python
 - model: folder where the trained network models are saved, they are saved in different formats (.keras, .h5)
+-- train_hdf5: subfolder containing the models saved during checkpoints in the training phases.
+-- trained: subfolder containing the best models trained for each version of the network. These models can be used for KWS in audio tracks.
 - results: A folder containing all the results obtained during the project. It contains the results of the dataset analysis and the results of the network training
 
 ## **Project choices** 
@@ -74,9 +76,9 @@ From the dataset, I decided to implement the commands listed below, along with t
 - 'up': turn up the volume
 - 'down': turn down the volume
 - 'left': moves to the next audio track/movie
-- 'right': moves to the previus audio track/movie
+- 'right': moves to the previous audio track/movie
 
-All other words belog to the class 'unknown'.
+All other words belong to the class 'unknown'.
 With this division, approximately 75% of the dataset will belong to the 'unknown' class with the remaining 25% split almost equally among the 7 command classes 
 (backward and farward have half as many samples as the other classes).
 
@@ -235,7 +237,7 @@ Paragraph showing the best results obtained for all versions of Siren Net tested
 
 ## **Developer's notes**  
   
-Work In Progress
+Work Done
 
 ## **Developers:**  
 - Alessandro Diana
