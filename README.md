@@ -3,11 +3,11 @@
 ## **Description** 
 
 Project for the Symbolic and Evolutionary Artificial Intelligence exam of the AIDE master's degree at the University of Pisa, year 2024-2025.
+Keyword Spotting (KWS) system for recognizing voice commands (e.g. stop, go, up, down, forward, backward) to control a media player or TV, designed for eventual deployment on FPGA. Built as a project for the Symbolic and Evolutionary Artificial Intelligence exam (Master's in AI and Data Engineering, University of Pisa).
 
-The project involves training a neural network to recognize voice commands that will be used to remotely control a television or MP3 player.
-The goal of the project is to train the neural network on a dataset of audio files containing single words, with different pronunciations.
-Among these words, the main command words (es. Start, Stop, Pause, Forward, Backward) must be recognized, while the other words related to other commands must be ignored.
-Once trained, the neural network will be placed in an FPGA.
+*Goal*: Train a lightweight CNN to classify single-word audio commands while rejecting all out-of-vocabulary words into an unknown class (~75% of the dataset), on the Google Speech Commands V2 benchmark (~105k utterances, 35 words, 16 kHz).
+*Approach*: Audio is converted into 2D spectral features (STFT → Mel-spectrogram → MFCC) used as images for the CNN. I designed a custom network family, SirenNet, tailored to the spectro-temporal structure of speech: parallel branches with rectangular kernels that operate separately on the frequency and time axes (rather than square kernels), plus inception modules to capture multi-scale spectral patterns. To fit VRAM limits without inflating training time, I adopted a preprocessing pipeline that computes spectral features once and caches them to disk, chosen after profiling showed feature extraction is >8× slower than raw audio reading.
+*Results*: SirenNet v1 reaches 98.68% test accuracy with only ~95k parameters, making it small enough for embedded/FPGA deployment.
 
 General note: At the bottom of the programs there will be notes in the comments explaining the most important parts and the choices I made.
 
